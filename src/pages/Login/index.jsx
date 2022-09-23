@@ -7,7 +7,6 @@ import { useDispatch } from 'react-redux'
 import { loginUser } from '../../app/api/auth'
 import { userLogin } from '../../app/features/Auth/actions'
 import { useHistory } from 'react-router'
-import { LinkContainer } from 'react-router-bootstrap'
 import { Link } from 'react-router-dom'
 
 const schema = yup.object({
@@ -37,8 +36,8 @@ export default function Login() {
       setError('password', { type: 'invalidCredential', message: data.message });
       setStatus(statusList.error)
     } else {
-      const { user, token } = data;
-      dispatch(userLogin({ user, token }));
+      const { user, token, role } = data;
+      dispatch(userLogin({ user, token, role }));
       history.push('/');
     }
     setStatus(statusList.success);
@@ -55,7 +54,7 @@ export default function Login() {
               type="email"
               placeholder="Enter email"
               isInvalid={errors.email}
-              {...register('email')}
+              {...register('email')} style={{ marginBottom: '20px', width: '500px' }}
             />
             <Form.Control.Feedback type="invalid">
               {errors.email?.message}
@@ -68,7 +67,7 @@ export default function Login() {
               type="password"
               placeholder="Password"
               isInvalid={errors.password}
-              {...register('password')}
+              {...register('password')} style={{ marginBottom: '20px', width: '500px' }}
             />
             <Form.Control.Feedback type="invalid">
               {errors.password?.message}
@@ -77,7 +76,7 @@ export default function Login() {
           <Button variant="primary" type="submit" disabled={status === statusList.process} style={{ width: '100%', marginBottom: '20px' }}>
             {status === statusList.process ? 'Memprosess...' : 'Login'}
           </Button>
-          <p>Not a Member? <Link to='/register'> Create Account</Link></p>
+          <p style={{ textAlign: 'center' }}>Not a User ? <Link to='/register'> Create Account</Link></p>
         </Form>
       </Card.Body>
     </Card >

@@ -5,17 +5,18 @@ import { useSelector } from 'react-redux'
 
 export default function Profile() {
   const auth = useSelector(state => state.auth)
+
   return (
     <Card>
       <Card.Body>
-        <DataTable 
+        <DataTable
           columns={[
-            {selector: row => row.label},
-            {selector: row => row.value},
+            { selector: row => row.label },
+            { selector: row => row.value },
           ]}
           data={[
-            {label: 'Nama', value: auth.user.full_name},
-            {label: 'Email', value: auth.user.email},
+            { label: 'Nama', value: auth.user.full_name },
+            { label: 'Email', value: auth.user.email },
           ]}
         />
       </Card.Body>

@@ -10,7 +10,6 @@ import Cart from './pages/Cart';
 import Account from './pages/Account';
 import Checkout from './pages/Checkout';
 import Invoices from './pages/Invoices';
-import Login2 from './pages/Login2';
 
 function App() {
   const auth = useSelector(state => state.auth);

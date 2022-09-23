@@ -14,45 +14,48 @@ export default function Home() {
   const products = useSelector(state => state.products);
   const dispatch = useDispatch();
   const [tags, setTags] = useState([]);
-
+  // const auth = useSelector(state => state.auth);
   useEffect(() => {
     dispatch(fetchProducts());
     getTagsByCategory(products.category)
-    .then(({data}) => setTags(data));
+      .then(({ data }) => setTags(data));
   }, [dispatch, products.currentPage, products.category, products.tags, products.keyword]);
 
   const breadcrumb = [
-    {label: 'Home', path: '/'},
+    { label: 'Home', path: '/' },
   ];
+
 
   return (
     <div>
+
       <Container className="mt-5 p-5">
-        <BreadCrumb items={breadcrumb}/>
-        <strong>Tags: </strong> <Tag items={tags} onClick={tag => dispatch(toggleTags(tag))}/>
+        <BreadCrumb items={breadcrumb} />
+        <strong>Tags: </strong> <Tag items={tags} onClick={tag => dispatch(toggleTags(tag))} />
         <Row xs={1} lg={4} md={2} className="g-4 mt-1 mb-5">
-          { 
-            products.status === 'process' ? 
-              Array.from({length: 8}).map((_, idx) => (
+          {
+            products.status === 'process' ?
+              Array.from({ length: 8 }).map((_, idx) => (
                 <Col key={idx}>
                   <CardProductPlaceholder />
                 </Col>
-              )) :  
+              )) :
               products.data.map((product, i) => {
-                  return (
-                    <Col key={i}>
-                      <CardProduct item={product} onAddToCart={() => dispatch(addItem(product))}/>
-                    </Col>
-                  )
-                })
-            }
+                return (
+                  <Col key={i}>
+                    <CardProduct item={product} onAddToCart={() => dispatch(addItem(product))} />
+                  </Col>
+                )
+              })
+          }
         </Row>
-        <Paginate 
-          total={Math.ceil(products.totalItems / products.perPage)} 
+
+        <Paginate
+          total={Math.ceil(products.totalItems / products.perPage)}
           active={products.currentPage}
           onSetPage={page => dispatch(setPage(page))}
-          />
+        />
       </Container>
-    </div>
+    </div >
   )
 }

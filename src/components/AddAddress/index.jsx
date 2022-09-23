@@ -36,13 +36,11 @@ export default function AddAddress() {
       kelurahan: formData.kelurahan.label,
     }
 
-    setStatus('process');
-    console.log("Succes");
-    history.push('/account/address');
+    // setStatus('process');
     const { data } = await createAddress(payload);
-    if (!data) {
+    if (!data.errors) {
       setStatus('success');
-
+      history.push('/account/address');
     }
   }
 

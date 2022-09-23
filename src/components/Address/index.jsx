@@ -8,7 +8,7 @@ export default function Address() {
   const [address, setAddress] = useState([]);
   useEffect(() => {
     getAddress()
-    .then(({data: {data}}) => setAddress(data));
+      .then(({ data: { data } }) => setAddress(data));
   }, []);
 
   return (
@@ -18,12 +18,12 @@ export default function Address() {
           Tambah Alamat
         </Button>
       </LinkContainer>
-      <DataTable 
+      <DataTable
         columns={[
           {
             name: 'Nama',
             selector: row => row.nama
-          }, 
+          },
           {
             name: 'Detail',
             cell: row => `${row.provinsi}, ${row.kabupaten}, ${row.kecamatan}, ${row.kelurahan}, ${row.detail}`

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form, Row, Button, Col, Card, Alert, Container } from 'react-bootstrap'
+import { Form, Button, Col, Card, Alert, Container } from 'react-bootstrap'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
@@ -58,7 +58,7 @@ export default function Register() {
                 type="text"
                 isInvalid={errors.full_name}
                 placeholder="Masukan nama lengkap"
-                {...register('full_name')} style={{ marginBottom: '20px' }}
+                {...register('full_name')} style={{ marginBottom: '20px', width: '500px' }}
               />
               <Form.Control.Feedback type="invalid">
                 {errors.full_name?.message}
